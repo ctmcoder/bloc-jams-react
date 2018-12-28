@@ -6,18 +6,19 @@ class Album extends Component {
      super(props);
    
 
-const album = albumData.find( album => {
+	const album = albumData.find( album => {
        return album.slug === this.props.match.params.slug
      });
  
-this.state = {
+	this.state = {
        album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      hover: false
       };
 
-this.audioElement = document.createElement('audio');
-this.audioElement.src = album.songs[0].audioSrc;
+	this.audioElement = document.createElement('audio');
+	this.audioElement.src = album.songs[0].audioSrc;
  
  }
 
@@ -45,11 +46,29 @@ this.audioElement.src = album.songs[0].audioSrc;
        this.play();
      }
    }
+	hoverOn(index) {
+     console.log("hovering button")
 
+     this.setState({ hover: index })
+   }
+
+   hoverOff() {
+     this.setState({ hover: false })
+   }
+
+   renderButton(song, index) {
+     if (this.state.isPlaying && this.state.currentSong === song) {
+       return (<button><span className="ion-pause"></span></button>)
+     } else if (!this.state.isPlaying && this.state.currentSong === song) {
+       return (<button><span className="ion-play"></span></button>)
+     } else if (this.state.hover === index) {
+       return (<button><span className="ion-play"></span></button>)
+     } else {
+        return (<span>{index + 1}</span>)
+    }
+  }
 
      
-    
-
    render() {
      return (
        <section className="album">
@@ -70,14 +89,10 @@ this.audioElement.src = album.songs[0].audioSrc;
            <tbody>
           	{
               this.state.album.songs.map( (song, index) =>
-                <tr className="song" key={index} onClick={() => this.handleSongClick(song)}>
-                  <td className="song-actions">
-                    <button>
-                      <span className="song-number">{index+1}</span>
-                      <span className="ion-play"></span>
-                      <span className="ion-pause"></span>
-                    </button>
-                  </td>
+                <tr onMouseEnter={() => this.hoverOn(index)}
+                onMouseLeave={() => this.hoverOff()}
+            className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                  <td>{this.renderButton(song, index)}</td>
                   <td className="song-title">{song.title}</td>
                   <td className="song-duration">{song.duration}</td>
                 </tr>
