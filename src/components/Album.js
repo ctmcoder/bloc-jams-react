@@ -78,8 +78,7 @@ class Album extends Component {
    renderButton(song, index) {
      if (this.state.isPlaying && this.state.currentSong === song) {
        return (<button><span className="ion-pause"></span></button>)
-     } else if (!this.state.isPlaying && this.state.currentSong === song) {
-       return (<button><span className="ion-play"></span></button>)
+     
      } else if (this.state.hover === index) {
        return (<button><span className="ion-play"></span></button>)
      } else {
@@ -120,7 +119,7 @@ class Album extends Component {
              
            </tbody>
          </table>
-         <PlayerBar isPlaying={this.state.isPlaying} currentSong={this.state.currentSong} />
+         
 		 <PlayerBar
            isPlaying={this.state.isPlaying}
            currentSong={this.state.currentSong}
