@@ -59,8 +59,7 @@ class Album extends Component {
    renderButton(song, index) {
      if (this.state.isPlaying && this.state.currentSong === song) {
        return (<button><span className="ion-pause"></span></button>)
-     } else if (!this.state.isPlaying && this.state.currentSong === song) {
-       return (<button><span className="ion-play"></span></button>)
+     
      } else if (this.state.hover === index) {
        return (<button><span className="ion-play"></span></button>)
      } else {
