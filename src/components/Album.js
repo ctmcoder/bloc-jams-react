@@ -157,7 +157,7 @@ class Album extends Component {
             className="song" key={index} onClick={() => this.handleSongClick(song)} >
                   <td>{this.renderButton(song, index)}</td>
                   <td className="song-title">{song.title}</td>
-                  <td className="song-duration">{song.duration}</td>
+                  <td>{this.formatTime(song.duration)}</td> 
                 </tr>
               )
             }
