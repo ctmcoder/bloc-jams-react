@@ -24,7 +24,7 @@ class App extends Component {
         <a class="nav-link" href="/library">Library<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/">Landing</a>
+        <a class="nav-link" href="/">Home</a>
       </li>
       </ul>
      
